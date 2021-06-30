@@ -44,6 +44,9 @@ Both default series are configured to update on table changes and not resize whe
 
 The `generator` is a callback function for specifying how to update a table cell of a value series. The callback is passed information relating to the generator and table cell, the row index, and column index of the table cell. For details, see: [GeneratorInfo](#generatorinfo). The callback should return an object containing the value and optionally, any classes and attributes to be applied to the table cell. For details, see: [GeneratorResult](#generatorresult).
 
+<!-- TODO: Will likely need to improve or fold this into the previous paragraph -->
+If state needs to be kept between generator iterations, additional properties can be added to the generator result. The state can be accessed through the `prev` property of the `info` parameter. For details, see: [GeneratorInfo](#generatorinfo). 
+
 ##### GeneratorInfo
 
 | Name | Value | Description |
@@ -51,7 +54,8 @@ The `generator` is a callback function for specifying how to update a table cell
 | rowType | `'thead'`, `'tbody'` or `'tfoot'` | The section of the table cell. |
 | cellType | `'td'` or `'th'` | The type of the table cell. |
 | direction | `'row'` or `'column'` | The direction of the generator. |
-| prevSeriesValue | `string` or `undefined` | The previous value calculated by the generator. |
+| classes | `string[]` | The classes present on the table cell. |
+| prev | `GeneratorResult` | The generator result from the previous iteration. |
 
 ##### GeneratorResult
 
